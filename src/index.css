@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─── */
+:root {
+  font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #1e293b;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body,
+html.dark body {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ─── Glass Effects ─── */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* ─── Component Layer ─── */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-teal-500 to-emerald-600 text-white rounded-2xl font-semibold 
+    transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/25 active:scale-[0.97] 
+    disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .dark .btn-primary {
+    @apply from-teal-400 to-emerald-500 hover:shadow-teal-400/20;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-slate-200 
+    focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 
+    transition-all duration-200 bg-white/80 backdrop-blur-sm text-slate-800 placeholder:text-slate-400;
+  }
+  
+  .dark .input-field {
+    @apply bg-slate-800/80 border-slate-700 text-slate-200 placeholder:text-slate-500
+    focus:ring-teal-400/20 focus:border-teal-400;
+  }
+  
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/60 
+    shadow-lg shadow-slate-200/40 p-6 transition-all duration-300;
+  }
+  
+  .dark .card {
+    @apply bg-slate-800/60 border-slate-700/50 shadow-lg shadow-black/20;
+  }
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(20, 184, 166, 0.2);
+  color: #0f766e;
+}
+.dark ::selection {
+  background: rgba(45, 212, 191, 0.25);
+  color: #ccfbf1;
+}
+
+/* ─── Toast Override for Dark Mode ─── */
+.dark [data-sonner-toaster],
+.dark .go2072408551 {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
